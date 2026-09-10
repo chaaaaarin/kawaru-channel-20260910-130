@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GPT-6 Astra 活用事例100連発 — 1枚まとめ</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --brand:#1C3461; --brand-deep:#16284A; --brand-soft:rgba(28,52,97,.08); --brand-line:rgba(28,52,97,.22);
+    --accent:#5BBCD4; --accent-deep:#2C7A93; --accent-soft:rgba(91,188,212,.16);
+    --bg:#F7FAFC; --paper:#FFFFFF; --ink:#1C3461; --ink-mid:#4A6080; --ink-sub:#8098B4; --line:rgba(28,52,97,.12);
+    --head:'Noto Sans JP';
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{background:var(--bg);color:var(--ink);font-family:'Noto Sans JP',-apple-system,'Hiragino Sans','Yu Gothic',sans-serif;line-height:1.75;}
+  .doc{max-width:900px;margin:0 auto;background:var(--paper);box-shadow:0 0 60px rgba(0,0,0,.10);overflow:hidden;}
+  .hero{position:relative;background:linear-gradient(160deg,var(--brand-soft) 0%,var(--bg) 70%);padding:48px 52px 40px;border-bottom:3px solid var(--brand-line);overflow:hidden;}
+  .hero .coin{position:absolute;width:160px;height:160px;border-radius:50%;background:var(--accent);opacity:.15;top:-52px;right:-36px;}
+  .hero .chan{display:inline-flex;align-items:center;gap:12px;margin-bottom:16px;}
+  .eyebrow{font-family:var(--head);font-weight:900;color:var(--brand-deep);letter-spacing:2px;font-size:13px;display:inline-flex;align-items:center;gap:9px;margin-bottom:12px;}
+  .eyebrow::before{content:'▸';background:var(--accent);color:var(--ink);border-radius:50%;width:22px;height:22px;display:inline-flex;align-items:center;justify-content:center;font-size:13px;font-weight:900;}
+  h1{font-family:var(--head);font-weight:900;font-size:38px;line-height:1.28;color:var(--ink);}
+  h1 .hl{color:var(--brand-deep);}
+  .hero p.sub{font-size:17px;color:var(--ink-mid);font-weight:700;margin-top:14px;max-width:700px;}
+  .meta{margin-top:18px;display:flex;gap:9px;flex-wrap:wrap;}
+  .meta span{background:var(--paper);border:1.5px solid var(--line);border-radius:999px;padding:6px 15px;font-size:13px;font-weight:700;color:var(--ink-mid);}
+  .meta span.k{background:var(--accent-soft);border-color:var(--accent);color:var(--ink);}
+  .tocbar{background:var(--brand-soft);border-bottom:1px solid var(--line);padding:16px 52px;display:flex;flex-wrap:wrap;gap:8px;}
+  .tocbar a{font-size:13px;font-weight:700;color:var(--brand-deep);text-decoration:none;background:var(--paper);border:1px solid var(--line);border-radius:999px;padding:5px 13px;}
+  .tocbar a:hover{border-color:var(--brand);}
+  section{padding:38px 52px;border-bottom:1px solid var(--line);}
+  .sec-h{display:flex;align-items:center;gap:13px;margin-bottom:20px;}
+  .sec-h .no{flex-shrink:0;width:38px;height:38px;border-radius:50%;background:var(--accent);color:var(--ink);font-family:var(--head);font-weight:900;font-size:18px;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 0 var(--accent-deep);}
+  .sec-h h2{font-family:var(--head);font-weight:900;font-size:24px;color:var(--ink);line-height:1.3;}
+  p.body{font-size:15.5px;color:var(--ink);margin-bottom:12px;}
+  p.note{font-size:13px;color:var(--ink-mid);} p.note a{color:var(--brand-deep);font-weight:700;}
+  .hl{color:var(--brand-deep);font-weight:700;} .hl-a{color:var(--accent-deep);font-weight:700;}
+  .lead{font-size:16.5px;color:var(--ink-mid);font-weight:700;}
+  rt{font-size:.55em;color:var(--ink-mid);font-weight:700;}
+  .tldr{display:grid;grid-template-columns:1fr 1fr 1fr;gap:13px;}
+  .tldr .t{background:var(--bg);border:1.5px solid var(--line);border-left:4px solid var(--accent);border-radius:12px;padding:16px 15px;}
+  .tldr .t .k{font-family:var(--head);font-weight:900;color:var(--ink);font-size:13px;margin-bottom:6px;}
+  .tldr .t p{font-size:13.5px;font-weight:700;color:var(--ink);line-height:1.55;}
+  .bullets{list-style:none;} .bullets li{font-size:15px;font-weight:700;color:var(--ink);padding:9px 0 9px 28px;position:relative;border-bottom:1px solid var(--line);line-height:1.55;}
+  .bullets li::before{content:'';position:absolute;left:2px;top:16px;width:11px;height:11px;border-radius:50%;background:var(--accent);}
+  .checks{list-style:none;} .checks li{font-size:14.5px;color:var(--ink);padding:6px 0 6px 24px;position:relative;line-height:1.6;}
+  .checks li::before{content:'✔';position:absolute;left:2px;color:var(--brand);font-weight:900;}
+  table.cmp{width:100%;border-collapse:separate;border-spacing:0;font-size:13.5px;border:1.5px solid var(--line);border-radius:12px;overflow:hidden;margin-bottom:12px;}
+  table.cmp th,table.cmp td{padding:10px 13px;text-align:left;border-bottom:1px solid var(--line);line-height:1.5;}
+  table.cmp thead th{background:var(--ink);color:#fff;font-family:var(--head);font-weight:700;}
+  table.cmp thead th:first-child{background:var(--brand-deep);}
+  table.cmp tbody tr:last-child td{border-bottom:none;} table.cmp td:first-child{font-weight:700;}
+  table.cmp .yes{color:var(--brand-deep);font-weight:900;} table.cmp .no{color:var(--ink-sub);}
+  .steps{list-style:none;} .steps li{font-size:14.5px;font-weight:600;color:var(--ink);padding:10px 14px 10px 46px;position:relative;margin-bottom:8px;background:var(--bg);border:1.5px solid var(--line);border-left:4px solid var(--brand);border-radius:11px;line-height:1.55;}
+  .steps li .n{position:absolute;left:11px;top:50%;transform:translateY(-50%);width:26px;height:26px;background:var(--accent);color:var(--ink);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--head);font-weight:900;font-size:13px;box-shadow:0 2px 0 var(--accent-deep);}
+  .box{background:var(--accent-soft);border:1.5px solid var(--accent);border-radius:12px;padding:16px 20px;}
+  .box h3{font-family:var(--head);font-weight:900;color:var(--accent-deep);font-size:15px;margin-bottom:8px;}
+  .box ul{margin-left:18px;font-size:13.5px;color:var(--ink);line-height:1.7;} .box li{margin-bottom:5px;}
+  .secsub{font-family:var(--head);font-weight:900;font-size:15px;color:var(--ink);margin:16px 0 9px;}
+  .gift{background:var(--bg);border:1.5px solid var(--accent);border-left:4px solid var(--accent);border-radius:11px;padding:12px 16px;font-size:13.5px;font-weight:700;color:var(--accent-deep);margin-top:8px;}
+  .cards{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+  .cards .c{background:var(--bg);border:1.5px solid var(--line);border-top:4px solid var(--brand);border-radius:12px;padding:15px 16px;}
+  .cards .c h3{font-family:var(--head);font-weight:900;font-size:15px;color:var(--brand-deep);margin-bottom:7px;line-height:1.35;}
+  .cards .c ul{list-style:none;} .cards .c li{font-size:12.5px;color:var(--ink-mid);padding:3px 0 3px 16px;position:relative;line-height:1.5;}
+  .cards .c li::before{content:'·';position:absolute;left:4px;color:var(--accent);font-weight:900;}
+  .cards .c .cnt{font-size:11.5px;color:var(--ink-sub);margin-top:6px;font-weight:700;}
+  .doccard{width:100%;background:#fff;border:1.5px solid var(--line);border-radius:12px;overflow:hidden;box-shadow:0 3px 12px rgba(0,0,0,.05);margin:6px 0 4px;}
+  .doccard .bar{background:var(--ink);color:#EDE9E1;font-size:11.5px;font-family:ui-monospace,Menlo,monospace;padding:7px 14px;}
+  .doccard .bd{padding:14px 18px;}
+  .doccard .en{font-size:12.5px;color:var(--ink);line-height:1.65;font-weight:600;font-family:ui-monospace,Menlo,monospace;}
+  .doccard .ja-gloss{font-size:13.5px;color:var(--brand-deep);font-weight:700;margin-top:9px;padding-top:9px;border-top:1px solid var(--line);line-height:1.75;}
+  .faq .qa{background:var(--bg);border:1.5px solid var(--line);border-radius:11px;padding:12px 16px;margin-bottom:8px;}
+  .faq .qa .q{font-family:var(--head);font-weight:900;font-size:14px;color:var(--brand-deep);} .faq .qa .q::before{content:'Q. ';color:var(--accent-deep);}
+  .faq .qa .a{font-size:13px;color:var(--ink-mid);margin-top:4px;line-height:1.65;} .faq .qa .a::before{content:'A. ';color:var(--ink);font-weight:700;}
+  footer{background:var(--ink);color:#EBEBE7;padding:34px 52px;}
+  footer .frow{display:flex;justify-content:space-between;align-items:center;gap:18px;flex-wrap:wrap;}
+  footer .lg{display:flex;align-items:center;gap:11px;}
+  footer .cta{background:var(--accent);color:var(--ink);border-radius:999px;padding:11px 24px;font-family:var(--head);font-weight:900;font-size:14px;text-decoration:none;}
+  footer .src{font-size:12px;color:#9C9C96;margin-top:16px;line-height:1.9;} footer .src a{color:var(--accent);text-decoration:none;}
+  .draft-tag{background:var(--brand-deep);color:#fff;font-size:12px;font-weight:700;text-align:center;padding:7px;letter-spacing:.4px;}
+  .nb{display:inline-block;}
+</style>
+</head>
+<body>
+<svg style="display:none">
+  <symbol id="kawaru-logo" viewBox="0 0 406 93">
+    <rect x="6.67572e-06" y="13.4815" width="7.93029" height="74.5447" fill="currentColor"/>
+    <path d="M18.2397 52.7235L24.2772 47.5817L57.8911 88.0582L48.3318 88.0582L18.2397 52.7235Z" fill="#5BBCD4"/>
+    <path d="M34.8933 49.5514L40.9308 44.4096L77.2278 88.0366L67.4075 88.0262L34.8933 49.5514Z" fill="#5BBCD4"/>
+    <rect x="57.1908" y="2.92276" width="7.93029" height="83.5485" transform="rotate(42.3764 57.1908 2.92276)" fill="currentColor"/>
+    <rect x="59.4772" width="7.93029" height="22.2048" fill="currentColor"/>
+    <rect x="44.4096" y="7.9303" width="7.93029" height="22.9978" transform="rotate(-90 44.4096 7.9303)" fill="currentColor"/>
+    <path d="M110.882 61.3999L110.204 47.3281L135.413 20.7649H148.958L126.233 45.2211L119.46 52.4451L110.882 61.3999ZM99.9703 73.4399V20.7649H112.086V73.4399H99.9703ZM136.015 73.4399L117.278 50.4886L125.254 41.8349L150.237 73.4399H136.015ZM181.053 73.4399V65.5386L180.301 63.8079V49.6609C180.301 47.1525 179.523 45.196 177.968 43.7914C176.463 42.3867 174.13 41.6844 170.97 41.6844C168.813 41.6844 166.681 42.0355 164.574 42.7379C162.517 43.39 160.761 44.293 159.306 45.4469L155.092 37.2446C157.299 35.6895 159.958 34.4855 163.069 33.6326C166.179 32.7798 169.339 32.3534 172.55 32.3534C178.721 32.3534 183.512 33.8082 186.923 36.7179C190.334 39.6275 192.04 44.1676 192.04 50.3381V73.4399H181.053ZM168.712 74.0419C165.552 74.0419 162.843 73.5151 160.585 72.4616C158.328 71.358 156.597 69.878 155.393 68.0219C154.189 66.1657 153.587 64.0838 153.587 61.7761C153.587 59.3681 154.164 57.2611 155.318 55.4551C156.522 53.6491 158.403 52.2445 160.962 51.2411C163.52 50.1876 166.856 49.6609 170.97 49.6609H181.731V56.5086H172.249C169.49 56.5086 167.584 56.9601 166.53 57.8631C165.527 58.7661 165.025 59.8949 165.025 61.2494C165.025 62.7544 165.602 63.9584 166.756 64.8614C167.96 65.7142 169.59 66.1406 171.647 66.1406C173.604 66.1406 175.359 65.6891 176.915 64.7861C178.47 63.833 179.599 62.4534 180.301 60.6474L182.107 66.0654C181.254 68.674 179.699 70.6556 177.441 72.0101C175.184 73.3646 172.274 74.0419 168.712 74.0419ZM213.443 73.4399L198.844 32.9554H209.906L222.021 67.7961H216.754L229.396 32.9554H239.329L251.594 67.7961H246.327L258.818 32.9554H269.203L254.529 73.4399H243.166L232.406 43.5656H235.867L224.73 73.4399H213.443ZM300.427 73.4399V65.5386L299.675 63.8079V49.6609C299.675 47.1525 298.897 45.196 297.342 43.7914C295.837 42.3867 293.504 41.6844 290.344 41.6844C288.187 41.6844 286.055 42.0355 283.948 42.7379C281.891 43.39 280.135 44.293 278.68 45.4469L274.466 37.2446C276.674 35.6895 279.332 34.4855 282.443 33.6326C285.553 32.7798 288.714 32.3534 291.924 32.3534C298.095 32.3534 302.886 33.8082 306.297 36.7179C309.708 39.6275 311.414 44.1676 311.414 50.3381V73.4399H300.427ZM288.086 74.0419C284.926 74.0419 282.217 73.5151 279.959 72.4616C277.702 71.358 275.971 69.878 274.767 68.0219C273.563 66.1657 272.961 64.0838 272.961 61.7761C272.961 59.3681 273.538 57.2611 274.692 55.4551C275.896 53.6491 277.777 52.2445 280.336 51.2411C282.894 50.1876 286.23 49.6609 290.344 49.6609H301.105V56.5086H291.623C288.864 56.5086 286.958 56.9601 285.904 57.8631C284.901 58.7661 284.399 59.8949 284.399 61.2494C284.399 62.7544 284.976 63.9584 286.13 64.8614C287.334 65.7142 288.964 66.1406 291.021 66.1406C292.978 66.1406 294.734 65.6891 296.289 64.7861C297.844 63.833 298.973 62.4534 299.675 60.6474L301.481 66.0654C300.628 68.674 299.073 70.6556 296.815 72.0101C294.558 73.3646 291.648 74.0419 288.086 74.0419ZM324.296 73.4399V32.9554H335.508V44.3934L333.928 41.0824C335.132 38.2229 337.063 36.0657 339.722 34.6109C342.381 33.1059 345.617 32.3534 349.429 32.3534V43.1894C348.928 43.1392 348.476 43.1141 348.075 43.1141C347.674 43.064 347.247 43.0389 346.796 43.0389C343.585 43.0389 340.976 43.967 338.97 45.8231C337.013 47.6291 336.035 50.4635 336.035 54.3264V73.4399H324.296ZM376.043 74.0419C372.681 74.0419 369.671 73.3897 367.013 72.0854C364.404 70.781 362.372 68.7995 360.917 66.1406C359.462 63.4316 358.735 59.9952 358.735 55.8314V32.9554H370.474V54.1006C370.474 57.4618 371.176 59.945 372.581 61.5504C374.036 63.1055 376.068 63.8831 378.676 63.8831C380.482 63.8831 382.088 63.5069 383.492 62.7544C384.897 61.9517 386.001 60.7477 386.803 59.1424C387.606 57.4869 388.007 55.43 388.007 52.9719V32.9554H399.746V73.4399H388.609V62.3029L390.641 65.5386C389.287 68.348 387.28 70.48 384.621 71.9349C382.012 73.3395 379.153 74.0419 376.043 74.0419Z" fill="currentColor"/>
+  </symbol>
+</svg>
+
+<div class="doc">
+  <div class="draft-tag">AIエージェント / Kawaru ・ 2026-09-10</div>
+
+  <div class="hero">
+    <span class="coin"></span>
+    <div class="chan"><svg width="132" height="30" style="color:var(--brand)"><use href="#kawaru-logo"/></svg></div>
+    <div class="eyebrow">ONE-PAGE GUIDE</div>
+    <h1><span class="hl">GPT-6 Astra</span> 活用事例100連発<br>1ページで、渡せる作業がわかる</h1>
+    <p class="sub">ジーピーティーシックス・アストラ。「調べて／作って」だけじゃない——画面を自分で操作して、多段の作業を最後までやる。公式が示す8領域から、渡せる作業をまとめました。</p>
+    <div class="meta"><span class="k">2026年9月版</span><span>初心者向け</span><span>所要10分</span><span>公式ページ／公式ドキュメント準拠</span></div>
+  </div>
+
+  <div class="tocbar">
+    <a href="#s1">① Astra とは・プラン</a><a href="#s2">② 前世代との差分</a><a href="#s3">③ 活用事例 8領域</a>
+    <a href="#s4">④ 頼み方のコツ</a><a href="#s5">⑤ 注意点</a><a href="#s6">⑥ 使い分け</a><a href="#s7">⑦ 今日からやること</a><a href="#s8">⑧ キット・FAQ</a>
+  </div>
+
+  <section>
+    <div class="sec-h"><div class="no">!</div><h2>まず3行で</h2></div>
+    <div class="tldr">
+      <div class="t"><div class="k">POINT 1</div><p>一番の変化は「画面を自分で操作して、多段の作業を最後までやる」こと</p></div>
+      <div class="t"><div class="k">POINT 2</div><p>公式が示す力は8領域。自分の仕事に当たる領域が1つあれば今日から試せる</p></div>
+      <div class="t"><div class="k">POINT 3</div><p>ただし単価2倍・枠少なめ・安全チェックで止まる・曖昧だと質問で止まる</p></div>
+    </div>
+    <div class="secsub">こんな人に</div>
+    <ul class="bullets"><li>「Astra、<span class="nb">結局なにに使えるの？」を一度で</span><span class="nb">整理したい</span></li><li><span class="nb">毎週の多段作業</span><span class="nb">（レポート・</span><span class="nb">調べ物・</span><span class="nb">資料）を軽くしたい</span></li><li><span class="nb">コードは書かないが、</span><span class="nb">業務を効率化したい</span></li></ul>
+  </section>
+
+  <section id="s1">
+    <div class="sec-h"><div class="no">1</div><h2>Astra とは・どのプランで使えるか</h2></div>
+    <div class="doccard">
+      <div class="bar">developers.openai.com/api/docs/models/gpt-6-astra</div>
+      <div class="bd">
+        <div class="en">"Our most capable model, built for the hardest end-to-end work. Use it for complex reasoning, coding, computer use, research, and document creation."</div>
+        <div class="ja-gloss">一番むずかしい「最初から最後まで」の仕事のために作った最上位モデル。複雑な考えごと・コード・パソコン操作・調べ物・資料づくりに向く。入力 $10 / 出力 $50（100万トークンあたり）、扱える文章量は約105万トークン、知識は2026年4月末まで。</div>
+      </div>
+    </div>
+    <table class="cmp">
+      <thead><tr><th>プラン</th><th>Astra が使える場所</th><th>ひとこと</th></tr></thead>
+      <tbody>
+        <tr><td>無料</td><td class="no">使えない</td><td>まず有料プランが必要</td></tr>
+        <tr><td>ChatGPT Plus</td><td class="yes">「Work」と「Codex（コーデックス）」の中だけ</td><td>通常チャットの最上位は今も GPT-5.6 Sol</td></tr>
+        <tr><td>Pro / Business</td><td class="yes">通常チャットでも（"GPT-6 Pro"）</td><td>フルに使うならこちら。管理者は既定オフ</td></tr>
+      </tbody>
+    </table>
+    <p class="note">5時間あたりの利用枠は Astra で 5〜45通が目安（✅公式）。単価が約2倍のため「重い設定のまま回すと請求が跳ねる」対策は料金の回で別に扱う。出典: OpenAI API モデルカード <a href="https://developers.openai.com/api/docs/models/gpt-6-astra" target="_blank" rel="noopener">出典を見る →</a></p>
+  </section>
+
+  <section id="s2">
+    <div class="sec-h"><div class="no">2</div><h2>前世代 GPT-5.6 Sol と何が違うのか</h2></div>
+    <p class="body"><span class="nb">答えは</span>「<span class="hl"><span class="nb">賢さより、</span><span class="nb">代わりに動く範囲が広がった</span></span>」。<span class="nb">「毎週の売上レポート」を</span><span class="nb">①集める→②整える→③グラフ→④スライド→⑤共有 と</span><span class="nb">分けると、</span><span class="nb">Sol までは全部自分で操作。</span><span class="nb">Astra は</span><span class="hl"><span class="nb">①〜④を代行して、</span><span class="nb">⑤の直前まで</span></span><span class="nb">持ってくる</span><span class="nb">（送信は承認）。</span><span class="nb">工程は同じで"誰がやるか"が変わる。</span></p>
+    <table class="cmp">
+      <thead><tr><th>テスト</th><th>GPT-6 Astra</th><th>GPT-5.6 Sol</th><th>何を測るか</th></tr></thead>
+      <tbody>
+        <tr><td>Agents' Last Exam</td><td class="yes">59.3%</td><td>53.6%</td><td>実ソフトでの専門作業（Opus 5 は 55.5%）</td></tr>
+        <tr><td>OSWorld 2.0</td><td class="yes">72.6%</td><td>65.7%</td><td>パソコン操作（Astra 約40分／Sol 約75分）</td></tr>
+        <tr><td>Terminal-Bench 4.0</td><td class="yes">57.9%</td><td>37.3%</td><td>ターミナルでの複雑作業</td></tr>
+        <tr><td>Mind2Web（速度）</td><td class="yes">Sol 比 1.9倍速</td><td>—</td><td>同じ作業の完了スピード</td></tr>
+      </tbody>
+    </table>
+    <p class="note">最高スコア設定では Astra は Opus 5 より約65%少ない出力トークンで同等以上（✅公式）。出典: OpenAI「GPT-6 Astra」ベンチマーク表 <a href="https://openai.com/index/gpt-6-astra/" target="_blank" rel="noopener">出典を見る →</a></p>
+  </section>
+
+  <section id="s3">
+    <div class="sec-h"><div class="no">3</div><h2>活用事例 — 公式が示す8領域（合計96件）</h2></div>
+    <p class="body"><span class="nb">各領域の冒頭は公式ページの記述。</span><span class="nb">個々は</span><span class="nb">「Astra にこう頼める」と</span><span class="nb">いう具体化です</span><span class="nb">（OpenAI が100個を</span><span class="nb">列挙したわけではありません）。</span></p>
+    <div class="cards">
+      <div class="c"><h3>① パソコン操作の代行</h3><ul><li><span class="nb">Web フォーム入力・</span><span class="nb">CRM 更新・</span><span class="nb">カレンダー整理</span></li><li><span class="nb">役所／病院の予約・</span><span class="nb">候補比較</span><span class="nb">（確定は承認）</span></li><li><span class="nb">画面の不具合切り分け・</span><span class="nb">ソフトの自動テスト</span></li><li>Power BI・<span class="nb">表計算の集計整形・</span><span class="nb">定型書類の記入</span></li></ul><div class="cnt">22 件（1〜22番）／✅「世界最高のコンピューター操作モデル」</div></div>
+      <div class="c"><h3>② 資料作成</h3><ul><li><span class="nb">お手本数枚からトーンごとスライドを</span><span class="nb">1本</span></li><li><span class="nb">議事録→報告書／数字→分析メモ</span></li><li><span class="nb">表→グラフ／長文→構造化要約／メール一括下書き</span></li><li><span class="nb">複数視点の絵から CAD で3D復元</span>（BenchCAD 95.9%）</li></ul><div class="cnt">16 件（23〜38番）／✅「専門業務における大きな変化」</div></div>
+      <div class="c"><h3>③ 調べ物・リサーチ</h3><ul><li><span class="nb">複数サイト横断→比較表／競合の</span><span class="nb">公開情報まとめ</span></li><li><span class="nb">仕様・</span><span class="nb">ドキュメントの要点抽出</span></li><li><span class="nb">価格調査→意思決定メモ／出典つき FAQ 生成</span></li><li><span class="nb">調べた結果をそのまま文書に下書き</span></li></ul><div class="cnt">10 件（39〜48番）／✅ BrowseComp 91.5%</div></div>
+      <div class="c"><h3>④ Web・アプリ・ゲーム制作</h3><ul><li><span class="nb">プロンプト→サイト作成・</span><span class="nb">公開</span>（ChatGPT Sites）</li><li><span class="nb">社内ミニツール・</span><span class="nb">計算機・</span><span class="nb">診断フォーム・</span>LP</li><li><span class="nb">Blender で</span><span class="nb">住宅3D→Unreal で</span><span class="nb">歩ける空間に</span></li><li><span class="nb">外部通信なしの単体HTMLツール</span></li></ul><div class="cnt">16 件（49〜64番）／✅「数分でカスタムゲーム」</div></div>
+      <div class="c"><h3>⑤ コーディング・開発</h3><ul><li><span class="nb">エージェント型でコード実装</span><span class="nb">（レビュー前提）</span></li><li><span class="nb">DB移行</span><span class="nb">（社内ベンチ Sol 42.7%→63.9%）</span></li><li><span class="nb">大規模リファクタ・</span><span class="nb">レガシー改修・</span><span class="nb">バグ→パッチ</span></li><li><span class="nb">Codex のメモ保持で</span><span class="nb">長時間タスクを継続</span></li></ul><div class="cnt">8 件（65〜72番）／✅ Terminal-Bench 4.0 57.9%</div></div>
+      <div class="c"><h3>⑥ 研究・分析</h3><ul><li><span class="nb">専門ソフト内で</span><span class="nb">データ精査／プロット生成</span></li><li><span class="nb">実験ログの整理・</span><span class="nb">統計の当て込み</span></li><li><span class="nb">文献の要点突き合わせ・</span><span class="nb">矛盾の洗い出し</span></li><li><span class="nb">※深掘りは専門職向け</span></li></ul><div class="cnt">5 件（73〜77番）／✅ GPQA Diamond 96.0%</div></div>
+      <div class="c"><h3>⑦ 会社の実務での使われ方</h3><ul><li><span class="nb">Harvey：契約書レビュー・</span><span class="nb">前提の洗い出し・</span><span class="nb">修正方針</span></li><li><span class="nb">Jane Street：取引ロジックの</span><span class="nb">実装</span></li><li><span class="nb">Cognition/Devin：テスト説明・</span><span class="nb">レポートの簡潔化</span></li><li><span class="nb">Higgsfield：制作フローの</span><span class="nb">自動化</span></li></ul><div class="cnt">9 件（78〜86番）／✅ 公式ページ掲載の顧客コメント</div></div>
+      <div class="c"><h3>⑧ 日常タスク</h3><ul><li><span class="nb">病院・</span><span class="nb">保育園の比較／引っ越しの部屋探し</span></li><li><span class="nb">役所の予約・</span><span class="nb">買い物リスト・</span><span class="nb">旅行の行程表</span></li><li><span class="nb">携帯／保険のプラン比較・</span><span class="nb">家計の集計</span></li><li><span class="nb">イベントの段取り・</span><span class="nb">手続き書類チェックリスト</span></li></ul><div class="cnt">10 件（87〜96番）／✅「暮らしの雑用を、あなたより速く」</div></div>
+    </div>
+    <p class="note">出典: OpenAI「GPT-6 Astra」 <a href="https://openai.com/index/gpt-6-astra/" target="_blank" rel="noopener">出典を見る →</a>（全96件は README／スライドに掲載）</p>
+  </section>
+
+  <section id="s4">
+    <div class="sec-h"><div class="no">4</div><h2>頼み方のコツ</h2></div>
+    <ul class="checks">
+      <li><b><span class="nb">「やって」と言い切る</span></b>：<span class="nb">「〜できる？」</span><span class="nb">「手伝って」は"やってという指示"と</span><span class="nb">して扱う、</span><span class="nb">と公式推奨。</span><span class="nb">最初に</span><span class="nb">「最後までやり切って」と伝える</span></li>
+      <li><b><span class="nb">先に条件、</span><span class="nb">あとで清書</span></b><span class="nb">：結果が</span><span class="nb">変わる判断だけ聞かれる前提で、</span><span class="nb">対象範囲・</span><span class="nb">期限・</span><span class="nb">出力形式を最初に渡す</span></li>
+      <li><b><span class="nb">決まり文句を禁止</span></b>：「"delve" "leverage" "In short:" などの<span class="nb">決まり文句を使わないで」と指定</span><span class="nb">（公式のブロックリスト）</span></li>
+      <li><b><span class="nb">過剰なテストを止める</span></b><span class="nb">：小さな可逆の変更に</span><span class="nb">「実装をなぞるだけのテストは不要」と</span><span class="nb">添える</span></li>
+    </ul>
+    <div class="gift">🎁 そのまま貼れる「多段タスク」依頼文の全文は、プレゼント図書館から受け取れます（本編スライドで1本だけ実物を表示）</div>
+    <p class="note">出典: OpenAI API モデルガイダンス <a href="https://developers.openai.com/api/docs/guides/latest-model" target="_blank" rel="noopener">出典を見る →</a></p>
+  </section>
+
+  <section id="s5">
+    <div class="sec-h"><div class="no">5</div><h2>注意点・デメリット</h2></div>
+    <div class="box">
+      <h3>メリットだけの資料にしないために</h3>
+      <ul>
+        <li><span class="nb">安全チェックで作業が</span><span class="nb">止まる：サイバー能力が</span>「Critical」<span class="nb">判定。</span><span class="nb">正当な作業でも一時停止・</span><span class="nb">停止</span><span class="nb">（ChatGPT/Codex は</span><span class="nb">再確認、</span><span class="nb">API は停止）</span></li>
+        <li><span class="nb">攻撃の概念実証コード</span><span class="nb">（PoC エクスプロイト）の作成は</span><span class="nb">現行版では拒否</span></li>
+        <li><span class="nb">「書かれた推論の追いやすさ」が</span><span class="nb">前世代より低下。</span><span class="nb">OpenAI も</span><span class="nb">「深刻に受け止める」と明記</span></li>
+        <li><span class="nb">知識は2026年4月末まで。</span><span class="nb">曖昧な依頼だと質問で止まる</span></li>
+        <li><span class="nb">単価は約2倍・</span><span class="nb">5時間枠は 5〜45通。</span><span class="nb">重い設定のまま回すと請求が跳ねる</span></li>
+        <li><span class="nb">公式の実演動画は編集された抜粋。</span><span class="nb">ChatGPT Plus の</span><span class="nb">通常チャットは今も Sol</span></li>
+        <li><span class="nb">送信・</span><span class="nb">購入・</span><span class="nb">削除など元に戻せない操作は承認を</span><span class="nb">挟む設計で頼む</span></li>
+      </ul>
+    </div>
+    <p class="note">出典: OpenAI「GPT-6 Astra」 <a href="https://openai.com/index/gpt-6-astra/" target="_blank" rel="noopener">出典を見る →</a></p>
+  </section>
+
+  <section id="s6">
+    <div class="sec-h"><div class="no">6</div><h2>他のツール・他のAIとの使い分け</h2></div>
+    <table class="cmp">
+      <thead><tr><th>やりたいこと</th><th>向く選び方</th></tr></thead>
+      <tbody>
+        <tr><td>画面操作を含む多段の作業・資料・コード</td><td class="yes">Astra</td></tr>
+        <tr><td>その場の相談・言い換え・アイデア出し</td><td class="no">通常チャット（Sol / 他モデル）で十分</td></tr>
+        <tr><td>最新ニュース・4月末以降の情報</td><td class="no">検索や、情報を自分で渡す</td></tr>
+        <tr><td>決まった単純作業の繰り返し</td><td class="no">既存の自動化（安定・低コスト）</td></tr>
+      </tbody>
+    </table>
+    <p class="lead"><span class="nb">「全部を Astra に</span><span class="nb">移す」ではなく、</span><span class="nb">多段で面倒な1つから。</span><span class="nb">考え方は他のモデルでもほぼ同じ。</span></p>
+  </section>
+
+  <section id="s7">
+    <div class="sec-h"><div class="no">7</div><h2>今日からやること</h2></div>
+    <ul class="steps">
+      <li><span class="n">1</span><span class="nb">毎週やっている</span><span class="nb">「多段の作業」を1つ書き出す</span><span class="nb">（例：売上レポート）</span></li>
+      <li><span class="n">2</span><span class="nb">それが8領域のどれに当たるか見る</span><span class="nb">（操作代行・</span><span class="nb">資料・</span><span class="nb">調べ物…）</span></li>
+      <li><span class="n">3</span><span class="nb">目的・</span><span class="nb">前提・</span><span class="nb">やること・</span><span class="nb">「判断だけ聞いて」を書いて丸ごと渡す</span></li>
+      <li><span class="n">4</span><span class="nb">出力をレビューして、</span><span class="nb">うまくいった依頼文を</span><span class="nb">「型」として保存する</span></li>
+    </ul>
+  </section>
+
+  <section id="s8">
+    <div class="sec-h"><div class="no">8</div><h2>キット・FAQ・用語</h2></div>
+    <div class="secsub">🎁 プレゼント（受け取りは概要欄の公式 LINE から）</div>
+    <ul class="bullets">
+      <li><span class="nb">① あなたの</span><span class="nb">職種別 Astra活用事例リスト</span><span class="nb">（公式の根拠つき逆引き・</span><span class="nb">そのまま貼れる依頼文つき）</span></li>
+      <li><span class="nb">② Astraに</span><span class="nb">「多段の仕事」を丸ごと</span><span class="nb">渡す依頼文テンプレ 厳選12</span><span class="nb">（画面操作を含む多段タスク専用）</span></li>
+      <li><span class="nb">③ Astra活用 逆引き診断アプリ</span><span class="nb">（3問答えると事例5件＋最初の</span><span class="nb">1コマンドが出る）</span></li>
+    </ul>
+    <div class="gift">全文・アプリは <a href="https://chaaaaarin.github.io/gift-library/aa/" style="color:var(--accent-deep);">プレゼント図書館（AIエージェント/Kawaru）</a> から</div>
+    <div class="secsub">よくある質問</div>
+    <div class="faq">
+      <div class="qa"><div class="q">無料でも使えますか？</div><div class="a">Astra は有料プランのみ。ChatGPT Plus は Work / Codex の中だけ、Pro / Business は通常チャットでも使えます。</div></div>
+      <div class="qa"><div class="q">「100連発」って盛ってない？</div><div class="a">タイトルはテンポの目安です。この動画では公式8領域に紐づく「渡せる作業」を合計96件挙げています。効くのは自分の仕事に当たる領域だけ。</div></div>
+      <div class="qa"><div class="q">デモみたいに「15分で3Dアプリ」は誰でもできる？</div><div class="a">公式の実演は編集された抜粋、開発者の投稿も個別の例です。同じ時間・品質になるとは限りません。まず1タスクで試すのが現実的です。</div></div>
+    </div>
+    <div class="secsub">用語</div>
+    <ul class="checks">
+      <li><b>computer use<span class="nb">（コンピューター操作）</span></b><span class="nb">：AI が人の代わりに画面を</span><span class="nb">クリック・</span><span class="nb">入力して操作すること</span></li>
+      <li><b>Codex<span class="nb">（コーデックス）</span></b><span class="nb">：OpenAI の</span><span class="nb">コーディング用エージェント</span>（CLI・<span class="nb">アプリ・</span>IDE・<span class="nb">GitHub 連携）</span></li>
+      <li><b>ChatGPT Sites<span class="nb">（サイツ）</span></b><span class="nb">：プロンプトから作った Web を、</span><span class="nb">そのまま置いて共有できる機能</span></li>
+      <li><b>CRM<span class="nb">（シーアールエム）</span></b><span class="nb">：顧客情報を管理するソフト</span></li>
+      <li><b><span class="nb">トークン</span></b><span class="nb">：AI が文章を扱う最小単位。</span><span class="nb">料金や利用枠はこの数で決まる</span></li>
+    </ul>
+  </section>
+
+  <footer>
+    <div class="frow">
+      <div class="lg"><svg width="132" height="30" style="color:#fff"><use href="#kawaru-logo"/></svg></div>
+      <a class="cta" href="https://chaaaaarin.github.io/gift-library/aa/" target="_blank" rel="noopener">🎁 プレゼントを受け取る</a>
+    </div>
+    <p class="src">おもな出典（すべて公式）：OpenAI「GPT-6 Astra」 <a href="https://openai.com/index/gpt-6-astra/" target="_blank" rel="noopener">openai.com/index/gpt-6-astra</a> ／ OpenAI API モデルカード <a href="https://developers.openai.com/api/docs/models/gpt-6-astra" target="_blank" rel="noopener">developers.openai.com</a> ／ モデルガイダンス <a href="https://developers.openai.com/api/docs/guides/latest-model" target="_blank" rel="noopener">latest-model</a><br>
+    ※ 本資料は非公式まとめ。全文（GitHub 公開）・スライドは概要欄から。</p>
+  </footer>
+</div>
+</body>
+</html>
